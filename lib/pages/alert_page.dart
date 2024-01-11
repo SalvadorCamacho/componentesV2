@@ -8,6 +8,8 @@ class AlertPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Alert page'),
+          backgroundColor: Colors.deepPurpleAccent,
+          elevation: 30
         ),
         body: Center(
           child: ElevatedButton(
@@ -15,7 +17,14 @@ class AlertPage extends StatelessWidget {
               style: TextButton.styleFrom(
                   backgroundColor: Colors.red, elevation: 20),
               child: const Text('Mostrar alerta')),
-        ));
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Icon(Icons.arrow_back_ios),
+        ),
+
+
+      );
   }
 
   _mostrarAlert(BuildContext context) {
@@ -23,7 +32,7 @@ class AlertPage extends StatelessWidget {
         context: context,
         builder: (context) {
           return AlertDialog(
-             shape: RoundedRectangleBorder(
+               shape: RoundedRectangleBorder(
                borderRadius: BorderRadius.circular(20)),
                title: const Text('Título'),
                content: Column(
@@ -32,9 +41,32 @@ class AlertPage extends StatelessWidget {
                      Text('Esto es un mensaje'),
                      FlutterLogo(size: 50.0)
                   ],
-               )
+               ),
+               actions: <Widget>[
+                   TextButton(
+                    //al dar clic ve a la ventana inmediata anterior
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: const Text('Cancelar'),
+                    ),
+                   TextButton(
+                    //al dar clic ve a la ventana inmediata anterior
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: const Text('OK'),
+                    )
+               ],
            );
         }
       );
   }
+}
+
+
+
+
+class Hero{
+  String? power;
+  String? name;
+
+   Hero({power: "dinero", name:"Batman"});
+
 }
